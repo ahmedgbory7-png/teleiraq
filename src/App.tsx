@@ -12,7 +12,9 @@ import { Auth } from '@/components/Auth';
 import { ChatList } from '@/components/ChatList';
 import { ChatWindow } from '@/components/ChatWindow';
 import { Profile } from '@/components/Profile';
+import { Settings } from '@/components/Settings';
 import { UserProfile } from '@/types';
+import { Language, translations } from '@/lib/i18n';
 import { Loader2, AlertCircle } from 'lucide-react';
 
 import { IraqLogo } from '@/components/IraqLogo';
@@ -23,7 +25,14 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [activeChatId, setActiveChatId] = useState<string | null>(null);
   const [showProfile, setShowProfile] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
+  const [language, setLanguage] = useState<Language>(() => (localStorage.getItem('app-language') as Language) || 'العربية');
   const [configError, setConfigError] = useState<string | null>(null);
+
+  useEffect(() => {
+    document.documentElement.dir = language === 'English' ? 'ltr' : 'rtl';
+    localStorage.setItem('app-language', language);
+  }, [language]);
 
   useEffect(() => {
     async function testConnection() {
@@ -111,7 +120,9 @@ export default function App() {
           activeChatId={activeChatId} 
           onSelectChat={setActiveChatId} 
           onOpenProfile={() => setShowProfile(true)}
+          onOpenSettings={() => setShowSettings(true)}
           currentUser={profile}
+          language={language}
         />
       </div>
 
@@ -193,6 +204,22 @@ export default function App() {
         {showProfile && profile && (
           <div className="absolute inset-0 z-50 bg-background">
             <Profile profile={profile} onClose={() => setShowProfile(false)} />
+          </div>
+        )}
+
+        {/* Settings Overlay */}
+        {showSettings && profile && (
+          <div className="absolute inset-0 z-50 bg-background">
+            <Settings 
+              profile={profile} 
+              onClose={() => setShowSettings(false)} 
+              onOpenProfile={() => {
+                setShowSettings(false);
+                setShowProfile(true);
+              }}
+              language={language}
+              onLanguageChange={setLanguage}
+            />
           </div>
         )}
       </div>

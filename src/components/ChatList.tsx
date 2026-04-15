@@ -9,15 +9,19 @@ import { Button } from '@/components/ui/button';
 import { Search, Settings, Edit, UserPlus, LogOut, Bot, Loader2 } from 'lucide-react';
 import { auth } from '@/firebase';
 import { format } from 'date-fns';
+import { Language, translations } from '@/lib/i18n';
 
 interface ChatListProps {
   activeChatId: string | null;
   onSelectChat: (id: string) => void;
   onOpenProfile: () => void;
+  onOpenSettings: () => void;
   currentUser: UserProfile | null;
+  language: Language;
 }
 
-export function ChatList({ activeChatId, onSelectChat, onOpenProfile, currentUser }: ChatListProps) {
+export function ChatList({ activeChatId, onSelectChat, onOpenProfile, onOpenSettings, currentUser, language }: ChatListProps) {
+  const t = translations[language];
   const [chats, setChats] = useState<Chat[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<UserProfile[]>([]);
@@ -190,8 +194,8 @@ export function ChatList({ activeChatId, onSelectChat, onOpenProfile, currentUse
             </AvatarFallback>
           </Avatar>
           <div className="flex flex-col">
-            <span className="font-bold text-sm leading-tight">تليعراق</span>
-            <span className="text-[10px] text-muted-foreground">بواسطة أبو وطن</span>
+            <span className="font-bold text-sm leading-tight">{t.appName}</span>
+            <span className="text-[10px] text-muted-foreground">{t.byAuthor}</span>
           </div>
         </div>
         <div className="flex gap-1">
@@ -208,6 +212,9 @@ export function ChatList({ activeChatId, onSelectChat, onOpenProfile, currentUse
           <Button variant="ghost" size="icon" className="rounded-full hover:bg-primary/10 hover:text-primary" onClick={() => setIsSearching(!isSearching)}>
             <Edit className="h-5 w-5" />
           </Button>
+          <Button variant="ghost" size="icon" className="rounded-full hover:bg-primary/10 hover:text-primary" onClick={onOpenSettings}>
+            <Settings className="h-5 w-5" />
+          </Button>
           <Button variant="ghost" size="icon" className="rounded-full hover:bg-destructive/10 hover:text-destructive" onClick={() => auth.signOut()}>
             <LogOut className="h-5 w-5" />
           </Button>
@@ -219,7 +226,7 @@ export function ChatList({ activeChatId, onSelectChat, onOpenProfile, currentUse
         <div className="relative">
           <Search className="absolute right-3 top-2.5 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="ابحث عن مستخدمين..."
+            placeholder={t.searchPlaceholder}
             className="pr-9 bg-muted/50 border-none rounded-xl h-10 focus-visible:ring-primary/30"
             value={searchQuery}
             onChange={(e) => handleSearch(e.target.value)}
@@ -232,7 +239,7 @@ export function ChatList({ activeChatId, onSelectChat, onOpenProfile, currentUse
         <div className="p-2 space-y-1">
           {isSearching || searchQuery.length >= 3 ? (
             <div className="space-y-1">
-              <p className="px-3 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">نتائج البحث</p>
+              <p className="px-3 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">{t.searchResults}</p>
               {searchResults.length > 0 ? (
                 searchResults.map(user => (
                   <button
@@ -253,7 +260,7 @@ export function ChatList({ activeChatId, onSelectChat, onOpenProfile, currentUse
                   </button>
                 ))
               ) : (
-                <p className="px-3 py-4 text-sm text-center text-muted-foreground">لا يوجد مستخدمين</p>
+                <p className="px-3 py-4 text-sm text-center text-muted-foreground">{t.noUsersFound}</p>
               )}
             </div>
           ) : (
@@ -285,8 +292,8 @@ export function ChatList({ activeChatId, onSelectChat, onOpenProfile, currentUse
                       </span>
                     </div>
                     <p className={`text-xs truncate ${activeChatId === chat.id ? 'text-white/80' : 'text-muted-foreground'}`}>
-                      {chat.lastMessage?.senderId === currentUser?.uid ? 'أنت: ' : ''}
-                      {chat.lastMessage?.text || (chat.lastMessage?.senderId ? 'أرسل ملفاً' : 'بدأت محادثة جديدة')}
+                      {chat.lastMessage?.senderId === currentUser?.uid ? t.you : ''}
+                      {chat.lastMessage?.text || (chat.lastMessage?.senderId ? 'أرسل ملفاً' : t.startChat)}
                     </p>
                   </div>
                 </button>

@@ -6,6 +6,11 @@ export interface UserProfile {
   status?: string;
   lastSeen?: any;
   nameColor?: string;
+  privacy?: {
+    phoneNumber?: string;
+    lastSeen?: string;
+    photo?: string;
+  };
 }
 
 export interface Chat {
