@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { db } from '@/firebase';
+import { db } from '../firebase';
 import { collection, query, orderBy, onSnapshot, addDoc, serverTimestamp, doc, updateDoc, getDoc, limit } from 'firebase/firestore';
-import { Message, UserProfile } from '@/types';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { ScrollArea } from '@/components/ui/scroll-area';
+import { Message, UserProfile } from '../types';
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar.tsx';
+import { Input } from './ui/input.tsx';
+import { Button } from './ui/button.tsx';
+import { ScrollArea } from './ui/scroll-area.tsx';
 import { Send, Phone, Video, MoreVertical, Paperclip, Smile, ArrowRight, X, Image as ImageIcon, FileText, Loader2 } from 'lucide-react';
 import { format } from 'date-fns';
 import EmojiPicker, { Theme } from 'emoji-picker-react';
-import { getSystemBotResponse } from '@/lib/gemini';
+import { getSystemBotResponse } from '../lib/gemini';
 
 interface ChatWindowProps {
   chatId: string;

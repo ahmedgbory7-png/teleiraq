@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
-import { db } from '@/firebase';
+import { db } from '../firebase';
 import { collection, query, where, onSnapshot, orderBy, limit, getDocs, addDoc, serverTimestamp, or, doc, getDoc, setDoc } from 'firebase/firestore';
-import { Chat, UserProfile } from '@/types';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Input } from '@/components/ui/input';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { Button } from '@/components/ui/button';
+import { Chat, UserProfile } from '../types';
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar.tsx';
+import { Input } from './ui/input.tsx';
+import { ScrollArea } from './ui/scroll-area.tsx';
+import { Button } from './ui/button.tsx';
 import { Search, Settings, Edit, UserPlus, LogOut, Bot, Loader2 } from 'lucide-react';
-import { auth } from '@/firebase';
+import { auth } from '../firebase';
 import { format } from 'date-fns';
 
 interface ChatListProps {

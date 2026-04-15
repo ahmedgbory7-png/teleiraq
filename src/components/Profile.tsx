@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { db } from '@/firebase';
+import { db } from '../firebase';
 import { doc, updateDoc } from 'firebase/firestore';
-import { UserProfile } from '@/types';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { UserProfile } from '../types';
+import { Button } from './ui/button.tsx';
+import { Input } from './ui/input.tsx';
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar.tsx';
 import { ArrowLeft, Camera, Check, Loader2 } from 'lucide-react';
 
 interface ProfileProps {
