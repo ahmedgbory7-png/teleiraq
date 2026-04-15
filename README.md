@@ -1,20 +1,28 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# تليعراق (TeleIraq) 🇮🇶
 
-# Run and deploy your AI Studio app
+تطبيق مراسلة فورية متطور مصمم خصيصاً للمستخدمين في العراق، يجمع بين السرعة، الأمان، والذكاء الاصطناعي.
 
-This contains everything you need to run your app locally.
+## المميزات الرئيسية
+- **الذكاء الاصطناعي (Gemini AI)**: نظام آلي ذكي يتحدث اللهجة العراقية ويساعدك في استخدام التطبيق.
+- **المكالمات**: دعم المكالمات الصوتية والمرئية بواجهة عصرية.
+- **الوسائط**: إرسال الصور والملفات بسهولة.
+- **التخصيص**: اختر لون اسمك المفضل ليظهر للآخرين.
+- **الأمان**: يعتمد على Firebase لتوفير حماية قصوى لبياناتك ومحادثاتك.
+- **دعم كامل للغة العربية**: واجهة مستخدم مصممة من اليمين لليسار (RTL).
 
-View your app in AI Studio: https://ai.studio/apps/55d9ad1c-a55f-472d-8a32-5e573da31e02
+## التقنيات المستخدمة
+- **React + Vite**
+- **TypeScript**
+- **Tailwind CSS**
+- **Firebase (Auth & Firestore)**
+- **Gemini AI API**
+- **Lucide Icons**
 
-## Run Locally
+## كيفية التشغيل محلياً
+1. قم بتحميل الكود أو عمل `git clone`.
+2. قم بتثبيت المكتبات: `npm install`.
+3. قم بإنشاء ملف `.env` وأضف مفاتيح Firebase و Gemini الخاصة بك.
+4. ابدأ التطبيق: `npm run dev`.
 
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+---
+تم التطوير بواسطة **AI Studio Build**.
