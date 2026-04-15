@@ -7,15 +7,15 @@ import { useEffect, useState } from 'react';
 import { auth, db } from './firebase';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { doc, getDoc, setDoc, serverTimestamp, getDocFromServer, onSnapshot, collection, query, where, getDocs, addDoc } from 'firebase/firestore';
-import { Button } from './components/ui/button';
-import { Auth } from './components/Auth';
-import { ChatList } from './components/ChatList';
-import { ChatWindow } from './components/ChatWindow';
-import { Profile } from './components/Profile';
-import { UserProfile } from './types';
+import { Button } from '@/components/ui/button';
+import { Auth } from '@/components/Auth';
+import { ChatList } from '@/components/ChatList';
+import { ChatWindow } from '@/components/ChatWindow';
+import { Profile } from '@/components/Profile';
+import { UserProfile } from '@/types';
 import { Loader2, AlertCircle } from 'lucide-react';
 
-import { IraqLogo } from './components/IraqLogo';
+import { IraqLogo } from '@/components/IraqLogo';
 
 export default function App() {
   const [user, setUser] = useState<User | null>(null);

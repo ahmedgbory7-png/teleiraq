@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import { auth } from '../firebase';
+import { auth } from '@/firebase';
 import { RecaptchaVerifier, signInWithPhoneNumber, ConfirmationResult } from 'firebase/auth';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { MessageSquare, Phone, ShieldCheck, Loader2 } from 'lucide-react';
 
-import { IraqLogo } from './IraqLogo';
+import { IraqLogo } from '@/components/IraqLogo';
 
 import { countryCodes } from '../constants';
 import {
